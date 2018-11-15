@@ -1,0 +1,4 @@
+<!--components/BetterForm/index.wxml-->
+<view class="form">
+  <slot></slot>
+</view>

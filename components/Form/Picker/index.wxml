@@ -1,0 +1,27 @@
+<picker
+  wx:if="{{mode !== 'custom'}}"
+  disabled='{{disabled}}'
+  value="{{pickerIndexes}}"
+  mode="{{mode}}"
+  range="{{mode == 'multiSelector'?multiRange:range}}"
+  range-key="{{label}}"
+  start="{{start}}"
+  end="{{end}}"
+  fields="{{fields}}"
+  bindchange="bindChange"
+  bindcolumnchange="bindcolumnchange"
+>
+<view class="m-picker" wx:if="{{val&&val.length>0}}">{{val}}</view>
+<view class="placeholder" wx:else>{{placeholder}}</view>
+</picker>
+
+<view class="m-custom-picker" wx:else>
+  <view class="picker-trigger" bindtap="showItemWrapper">
+    <view class="m-picker" wx:if="{{val&&val.length>0}}">{{val}}</view>
+    <view class="placeholder" wx:else>{{placeholder}}</view>
+  </view>
+  <view class="picker-mask" wx:if="{{showCustomWrapper}}" bindtap="hideItemWrapper"></view>
+  <scroll-view class="picker-item-wrapper" style="{{showCustomWrapper?'display:block;':'display:none;'}}">
+    <slot></slot>
+  </scroll-view>
+</view>

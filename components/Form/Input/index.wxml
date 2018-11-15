@@ -1,0 +1,8 @@
+<input 
+  placeholder="{{placeholder}}"
+  type="{{type}}"
+  disabled='{{disabled}}'
+  maxlength='{{maxlength}}'
+  value="{{val}}"
+  bindinput="onChange"
+ ></input>

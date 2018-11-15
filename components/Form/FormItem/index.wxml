@@ -1,0 +1,7 @@
+<!--components/FormItem/index.wxml-->
+<view class="form-item">
+  <view class="label" style="{{labelWidth?'flex:0 {{labelWidth||160}}rpx;':'flex:1;'}}">{{label}}</view>
+  <view class="content">
+    <slot></slot>
+  </view>
+</view>

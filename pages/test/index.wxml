@@ -1,0 +1,31 @@
+<m-form id="form" model="{{form}}" rules="{{rules}}" bindchange="formChange" labelWidth="120">
+  <m-form-item label="姓名" prop="name" input="{{onNameInput}}" output="{{onNameOutput}}">
+    <m-input placeholder='请输入姓名'/>
+  </m-form-item>
+  <m-form-item label="年龄" prop="info.age">
+    <input placeholder='this is a native input' value="{{form.info.age}}"></input>
+  </m-form-item>
+  <view>
+    <m-form-item label="性别" prop="sex">
+      <m-picker mode="selector" placeholder='请选择性别' range="{{sexList}}" label="label" value="value"/>
+    </m-form-item>
+    <m-form-item label="产品" prop="product">
+      <m-picker mode="multiSelector" placeholder='请选择产品' range="{{tree}}" label="name" value="value"/>
+    </m-form-item>
+    <m-picker mode="selector" placeholder='请选择性别' range="{{sexList}}" label="label" value="value" bindchange='onPickerChange' model="{{form.sex}}"/>
+
+    <m-form-item label="生日" prop="birthday">
+      <m-picker mode="date" placeholder="生日" />
+    </m-form-item>
+
+    <m-form-item label="自定义选择" prop="sex">
+      <m-picker mode="custom" placeholder="sex">
+        <m-picker-item wx:for="{{sexList}}" value="{{item.value}}" label="{{item.label}}" wx:key="{{index}}">
+          label:{{item.label}},value:{{item.value}}
+        </m-picker-item>
+      </m-picker>
+    </m-form-item>
+
+  </view>
+<button bindtap="autoInput">自动填充</button>
+</m-form>

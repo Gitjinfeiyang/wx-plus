@@ -1,0 +1,12 @@
+/* components/Form/Picker/index.wxss */
+.placeholder{color:#cfcfcf;}
+
+
+.picker-item-wrapper{
+  position:fixed; bottom:0; left:0; width:100vw; background:#fff;
+  z-index: 2; max-height: 50vh; padding:20rpx; box-sizing: border-box;
+}
+.picker-mask{
+  position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3);
+  z-index: 1;
+}

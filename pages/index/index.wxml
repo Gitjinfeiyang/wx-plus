@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<view class="container">
+  <canvas id="canvas" canvas-id="canvas" wx:if="{{showCanvas}}"></canvas>
+  <image src="{{image}}" wx:if="{{!showCanvas}}" mode="widthFix"></image>
+</view>
