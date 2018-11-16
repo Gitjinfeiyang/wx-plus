@@ -1,9 +1,6 @@
 // components/BetterForm/index.js
-function isEmpty(val){
-  if(val == null) return true;
-  val=val+'';
-  if(val.length<=0) return true;
-}
+import {isEmpty} from '../input'
+
 Component({
   /**
    * 组件的属性列表
@@ -20,7 +17,10 @@ Component({
     },
     rules:{
       type:Object,
-      value:{}
+      value:{},
+      observer(){
+        this.distributeRule()
+      }
     },
     labelWidth:{
       type:Number,
@@ -33,8 +33,6 @@ Component({
    */
   data: {
     formItems:[],
-    showToast:false,
-    valid:true
   },
 
   /**
@@ -56,70 +54,65 @@ Component({
       this.triggerEvent("change",this.properties.model)
     },
 
-    //表单验证 是否显示toast
-    validate(showToast=true){
-      this.setData({
-        showToast,
-        valid:true
-      })
-      this.validateObj(this.properties.rules,this.properties.model)
-      return this.data.valid;
-    },
-
-    validateObj(rules,model){
-      if(typeof rules!='object' || !this.data.valid) return;
-
-      if(!rules.message){
-        const keys=Object.keys(rules);
-        keys.forEach((key) => {
-          if(model[key]!=undefined){
-            this.validateObj(rules[key],model[key])
-          }
-        })
-      }else{
-        //通过message判断是validater配置  
-        let valid=true;
-        let message=rules.message;
-        if(rules.validator){
-          let v = rules.validator(model, this.properties.model)
-          if (v === false) {
-            valid = v;
-            if (this.data.showToast && !valid) {
-              wx.showToast({
-                title: message,
-                icon: 'none'
-              })
-              console.warn("Form:" + message + "; value:[ " + model + " ]")
-            }
-          }
-        }else{
-          if (rules.required && isEmpty(model)) {
-            valid = false;
-            if (this.data.showToast && !valid) {
-              wx.showToast({
-                title: message,
-                icon: 'none'
-              })
-              console.warn("Form:" + message + "; value:[ " + model + " ]")
-            }
+    distributeRule(){
+      this.data.formItems.forEach((item) => {
+        const prop=item.properties.prop;
+        let keys = prop.split('.');
+        let obj = this.properties.rules;
+        let temp = obj;
+        let rule=[];
+        for (let i = 0; i < keys.length - 1; i++) {
+          temp = temp[keys[i]];
+          //如果不存在则初始化为空对象
+          if (!temp) {
+            temp = {}
           }
         }
-        this.setData({
-          valid
-        })
-      }
+        rule=temp[keys[keys.length - 1]]||[];
+        item.setRule(rule)
+      })
+    },
 
-    }
+    //表单验证 是否显示toast
+    //@showToast 是否显示信息
+    //@mode 全部校验还是仅校验必填 all | required
+    validate(options={showToast:true,mode:'all'}){
+      const items=this.data.formItems;
+      let result={}
+      let valid=true;
+      for(let i=0; i<items.length; i++){
+        result=items[i].validateItem(options)
+        if(!result.valid){
+          if(options.showToast){
+            wx.showToast({
+              title: result.rule.message,
+              icon:"none"
+            })
+            console.warn(`Form: Invalid value,<${result.prop}>:[${result.value}]`)            
+          }
+          valid=false;
+          break;
+        }
+      }
+      if(!valid){
+        return result
+      }
+      return {valid};
+    },
+
   },
 
   relations:{
     '../FormItem/index':{
       type:'child',
       linked(target){
+        //如果没有设置prop，不连接
+        if(isEmpty(target.properties.prop)) return;
         this.data.formItems.push(target);
         this.setData({
           formItems:this.data.formItems
         })
+        this.distributeRule()        
       },
       linkChanged(target){
 

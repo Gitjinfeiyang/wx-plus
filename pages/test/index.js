@@ -17,9 +17,9 @@ Page({
     },
 
     rules:{
-      name:{required:true,message:"姓名不能为空"},
+      name:[{required:true,message:"姓名不能为空"}],
       info:{
-        age: {
+        age: [{required:true,message:"年龄必填"},{
           validator: function (value, form) {
             if (value != 18) {
               return false
@@ -27,9 +27,9 @@ Page({
             return true;
           },
           message:"年龄不等于18"
-          },
+          }],
       },
-      sex:{required:true,message:"性别不能为空"}
+      sex:[{required:true,message:"性别不能为空"}]
     },
 
     sexList:[
@@ -75,6 +75,7 @@ Page({
       return value.replace(/,/g,'');
     },
 
+    valid:false,
   },
 
   /**
@@ -94,6 +95,11 @@ Page({
     this.setData({
       form:detail
     })
+    const form = this.selectComponent("#form")
+    this.setData({
+      valid: form.validate({ showToast: false, mode: 'required' })
+    })
+    
   },
 
 
@@ -104,7 +110,7 @@ Page({
     // })
 
     const form=this.selectComponent("#form")
-    form.validate(true)
+    form.validate()
   }
 })
 

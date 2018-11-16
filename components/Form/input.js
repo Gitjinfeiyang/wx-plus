@@ -67,3 +67,10 @@ export const formatTime = (value, pattern, start = 0) => {
   let length = pattern.length
   return formatTime.substr(start, length)
 }
+
+export function isEmpty(val) {
+  if (val == null) return true;
+  val = val + '';
+  if (val.length <= 0) return true;
+  return false;
+}

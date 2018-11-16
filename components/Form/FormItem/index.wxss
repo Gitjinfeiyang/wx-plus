@@ -11,3 +11,5 @@ color: #666; text-align: right;
 .content input,.content picker{color:#666;}
 
 .placeholder{color:#cfcfcf;}
+
+.form-item.required .label:after{display: inline-block; content:'*'; color:#f00; vertical-align: middle; font-size: 20rpx; margin-left: 4rpx;}

@@ -1,4 +1,6 @@
 // components/FormItem/index.js
+import {isEmpty} from '../input'
+
 Component({
   /**
    * 组件的属性列表
@@ -36,6 +38,8 @@ Component({
     child:null,
     labelWidth:0,
     value:'',
+    rule:[],
+    isRequired:false,
   },
 
   ready() {
@@ -54,6 +58,7 @@ Component({
    */
   methods: {
     onChange(event,options){
+      if ((!this.properties.prop) || this.properties.prop === '') return;      
       let dirtyVal= this.properties.output(options.value,this.properties.prop)
       //formitem只接受从model来的数据
       // this.setData({ event,value:options.value })
@@ -74,7 +79,7 @@ Component({
     },    
     getParentValue(){
       if(!this.data.parent) return;
-      if((!this.properties.prop)||this.properties.prop=='') return;
+      if((!this.properties.prop)||this.properties.prop==='') return;
       let keys = this.properties.prop.split('.');
       let obj = this.data.parent.properties.model;
       let temp = obj;
@@ -85,13 +90,57 @@ Component({
     },
     setChildValue(value){
       if(!this.data.child) return;
+      if ((!this.properties.prop) || this.properties.prop === '') return;      
       //如果child不存在，formitem的值不初始化
       this.setData({
         value: value
       })
       let dirtyVal = this.properties.input(value, this.properties.prop)  
       this.data.child.setValue(dirtyVal)
-    }
+    },
+
+    setRule(rule){
+      let isRequired=false;
+      rule.forEach((item) => {
+        if(item.required){
+          isRequired=true;
+        }
+      })
+      this.setData({
+        rule,isRequired
+      })
+    },
+
+    validateItem({mode}){
+      let valid=true;
+      const rules=this.data.rule;
+      let invalidRule=null;
+      let item={}
+      for(let i=0; i<rules.length; i++){
+        item=rules[i]
+        if (item.validator && mode == 'all') {
+          if (!item.validator(this.data.value)) {
+            valid = false;
+            invalidRule = item;
+          }
+        } else if (item.required) {
+          if (isEmpty(this.data.value)) {
+            valid = false;
+            invalidRule = item;
+          }
+        }
+
+        if(!valid){
+          break;
+        }
+      }
+      return {
+        valid,
+        rule:invalidRule,
+        prop:this.properties.prop,
+        value:this.data.value
+      }
+    },
   },
 
   relations: {

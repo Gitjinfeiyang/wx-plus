@@ -58,7 +58,7 @@
 
 
 
-
-  <button bindtap="autoInput">提交</button>
+  <view class="tip">针对必填验证以禁用按钮需求，可在表单验证方法添加参数[mode="required"]即可只验证必填</view>
+  <button bindtap="autoInput" disabled='{{!valid}}'>提交</button>
   </m-form>
 </view>

@@ -1,5 +1,5 @@
 <!--components/FormItem/index.wxml-->
-<view class="form-item">
+<view class="form-item {{isRequired&&'required'}}">
   <view class="label" style="{{labelWidth?'flex:0 {{labelWidth||160}}rpx;':'flex:1;'}}">{{label}}</view>
   <view class="content">
     <slot></slot>
