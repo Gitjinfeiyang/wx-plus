@@ -5,4 +5,5 @@
   maxlength='{{maxlength}}'
   value="{{val}}"
   bindinput="onChange"
+  placeholder-class='placeholder'
  ></input>

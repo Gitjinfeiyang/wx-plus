@@ -1,6 +1,13 @@
 // components/BetterInput/index.js
 import behavior,{formatTime} from '../input.js'
 
+function stringify(val){
+  if(val == undefined){
+    return '';
+  }
+  return val+'';
+}
+
 Component({
   behaviors: [behavior],
   /**
@@ -20,7 +27,8 @@ Component({
       type: Object, //mode 为multiSelector时 range必须为tree ，children
       value:[],
       observer(val){
-        this&&this.data.parent&&this.data.parent.setChildValue()
+        //range 变化后，重新匹配选项
+        this&&this.setValue(this.data.val)
       }
     },
     label:{
@@ -145,10 +153,11 @@ Component({
     setValue(val){
       const { mode, range, value, label } = this.properties;      
       
+      //picker 进行值比对时 会统一转换成字符串比较
       switch(mode){
         case 'selector':
           for(let i=0; i<range.length; i++){
-            if(range[i][value] == val){
+            if(stringify(range[i][value]) === stringify(val)){
               this.setData({
                 val:range[i][label],
                 pickerIndexes:i
@@ -173,7 +182,8 @@ Component({
             }
             let selectI=-1;
             for(let i=0; i<currentRange.length; i++){
-              if(valItem == currentRange[i][value]){
+              //强等于，所以是数字时要注意类型
+              if(stringify(valItem) === stringify(currentRange[i][value])){
                 selectI=i;    
                 text += (' ' + currentRange[i][label])
               }
@@ -194,7 +204,7 @@ Component({
 
         case 'custom':
           for(let i=0; i<this.data.pickerItems.length; i++){
-            if(this.data.pickerItems[i].properties.value == val){
+            if(stringify(this.data.pickerItems[i].properties.value) === stringify(val)){
               this.data.pickerItems[i].highlight()
               this.setData({
                 pickerIndexes: val, val: this.data.pickerItems[i].properties.label, realVal: val
@@ -210,7 +220,8 @@ Component({
           })
       }
 
-    }
+    },
+
   },
 
   relations: {

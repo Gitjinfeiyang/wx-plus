@@ -3,7 +3,7 @@
     <m-input placeholder='请输入姓名'/>
   </m-form-item>
   <m-form-item label="年龄" prop="info.age">
-    <input placeholder='this is a native input' value="{{form.info.age}}"></input>
+    <m-input placeholder='this is a native input' value="{{form.info.age}}"></m-input>
   </m-form-item>
   <view>
     <m-form-item label="性别" prop="sex">

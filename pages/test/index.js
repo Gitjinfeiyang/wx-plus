@@ -10,7 +10,7 @@ Page({
       info:{
         age:'11',
       },
-      sex:1,
+      sex:null,
       product:['list1','itm2'],
       birthday:'2011-10-10',
     },
