@@ -17,6 +17,10 @@
       <m-form-item label="手机号" prop="phone" input="{{phoneIn}}" output="{{phoneOut}}">
         <m-input placeholder='手机号' maxlength='13'/>
       </m-form-item>
+
+      <m-form-item label="失焦触发" prop="money" input="{{moneyInput}}" output="{{moneyOutput}}">
+        <m-input placeholder='你有多少钱' type="number" trigger="blur"/>
+      </m-form-item>
       
 
     

@@ -14,6 +14,12 @@ Component({
       type:Number,
       value:-1
     },
+
+    //触发值变化的事件
+    trigger:{
+      type:String,
+      value:'change',//change || blur
+    }
   },
 
 
@@ -28,6 +34,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    onFocus(e){
+      if(this.data.parent){
+        this.data.parent.setChildValue(this.data.parent.data.value)
+      }
+    },
+    onBlur(e){
+      this.onChange(e)
+    }
   },
 
   relations:{

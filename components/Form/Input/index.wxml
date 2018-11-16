@@ -4,6 +4,8 @@
   disabled='{{disabled}}'
   maxlength='{{maxlength}}'
   value="{{val}}"
-  bindinput="onChange"
+  bindinput="{{trigger=='change'?'onChange':''}}"
+  bindfocus="{{trigger=='blur'?'onFocus':''}}"
+  bindblur="{{trigger=='blur'?'onBlur':''}}"
   placeholder-class='placeholder'
  ></input>

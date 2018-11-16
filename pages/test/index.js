@@ -1,4 +1,5 @@
 // pages/test/index.js
+let focusing=false;
 Page({
 
   /**
@@ -63,7 +64,16 @@ Page({
     //view -> model 去除空格
     phoneOut(val){
       return val.replace(/ /g, '')      
-    }
+    },
+
+
+    moneyInput(value){
+        return moneyNum(value)
+    },
+
+    moneyOutput(value){
+      return value.replace(/,/g,'');
+    },
 
   },
 
@@ -97,3 +107,27 @@ Page({
     form.validate(true)
   }
 })
+
+
+
+
+
+function moneyNum(value) {
+  let val = 0;
+  val = parseFloat(value)
+  if (isNaN(val)) {
+    val = 0
+    return '';
+  }
+  let valStr = val.toFixed(2);
+  let arr = valStr.split(".");
+  let right = '.' + arr[1];
+  let left = arr[0].split('');
+  for (let i = left.length - 3; i > 0; i -= 2) {
+    left.splice(i, 0, ',');
+    i--;
+  }
+  let str = left.join("") + right;
+
+  return str
+}
