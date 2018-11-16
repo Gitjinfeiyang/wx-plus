@@ -5,6 +5,9 @@ function stringify(val){
   if(val == undefined){
     return '';
   }
+  if(typeof val == 'object'){
+    return JSON.stringify(val)
+  }
   return val+'';
 }
 
