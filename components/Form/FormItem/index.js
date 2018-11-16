@@ -64,6 +64,8 @@ Component({
       let val=this.getParentValue()
       if(val === this.data.value) return;
       //当formitem与child连接时，child还没有与child的child连接，如果此时set，会找不到child的child,例如pickeritem
+      //过滤未定义值
+      if(val == undefined) val='';
       Promise.resolve()
         .then(() => {
           this.setChildValue(val)

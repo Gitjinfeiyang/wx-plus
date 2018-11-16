@@ -12,7 +12,7 @@ Page({
       },
       sex:1,
       product:['list1','itm2'],
-      birthday:'2011-10-10'
+      birthday:'2011-10-10',
     },
 
     rules:{
@@ -48,14 +48,13 @@ Page({
       },
     ],
 
-
-    onNameInput(val) {
-      console.log(val)
-      return val.replace(/ /g, '').split('').join(' ')
-    },
-    onNameOutput(val) {
+    phoneIn(val){
       return val
     },
+    phoneOut(val){
+      return val
+    }
+
   },
 
   /**
@@ -65,57 +64,10 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
   onPickerChange(e){
-    console.log(e)
+    this.setData({
+      'form.sex':e.detail.value
+    })
   },
 
   formChange({detail}){

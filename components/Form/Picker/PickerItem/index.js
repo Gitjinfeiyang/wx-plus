@@ -31,8 +31,19 @@ Component({
       this.data.parent.hideItemWrapper()
     },
     highlight(){
+      if(this.data.parent.data.currentSelectedItem){
+        this.data.parent.data.currentSelectedItem.cancelHighlight()
+      }
+      this.data.parent.setData({
+        currentSelectedItem:this
+      })
       this.setData({
         selected:true
+      })
+    },
+    cancelHighlight(){
+      this.setData({
+        selected:false
       })
     }
   },

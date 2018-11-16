@@ -1,5 +1,5 @@
 <m-form id="form" model="{{form}}" rules="{{rules}}" bindchange="formChange" labelWidth="120">
-  <m-form-item label="姓名" prop="name" input="{{onNameInput}}" output="{{onNameOutput}}">
+  <m-form-item label="姓名" prop="name">
     <m-input placeholder='请输入姓名'/>
   </m-form-item>
   <m-form-item label="年龄" prop="info.age">
@@ -9,6 +9,9 @@
     <m-form-item label="性别" prop="sex">
       <m-picker mode="selector" placeholder='请选择性别' range="{{sexList}}" label="label" value="value"/>
     </m-form-item>
+    <m-form-item label="手机号" prop="phone" input="{{phoneIn}}" output="{{phoneOut}}">
+    <m-input placeholder='手机号'/>
+  </m-form-item>
     <m-form-item label="产品" prop="product">
       <m-picker mode="multiSelector" placeholder='请选择产品' range="{{tree}}" label="name" value="value"/>
     </m-form-item>
@@ -19,7 +22,7 @@
     </m-form-item>
 
     <m-form-item label="自定义选择" prop="sex">
-      <m-picker mode="custom" placeholder="sex">
+      <m-picker mode="custom" placeholder="sex" title="自定义选择示例">
         <m-picker-item wx:for="{{sexList}}" value="{{item.value}}" label="{{item.label}}" wx:key="{{index}}">
           label:{{item.label}},value:{{item.value}}
         </m-picker-item>

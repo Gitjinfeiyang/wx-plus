@@ -42,6 +42,10 @@ Component({
       value: 'day',//有效值 year,month,day
     },
 
+    title:{ // mode 为 custom时
+      type:String,
+    }
+
 
     
   },

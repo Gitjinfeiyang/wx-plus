@@ -2,7 +2,12 @@ const behavior = Behavior({
   behaviors: [],
   properties: {
     model: {
-      type: String //options
+      type: String, //options
+      observer(value){
+        if (!this.data.parent) {
+          this.setValue(value)
+        }
+      }
     },
     placeholder:{
       type:String //options
@@ -18,9 +23,9 @@ const behavior = Behavior({
   },
   ready(){
     //if input don't have parent(FormItem), using the model property as value
-    if(!this.data.parent){
-      this.setValue(this.properties.model)
-    }
+    // if(!this.data.parent){
+    //   this.setValue(this.properties.model)
+    // }
   },
   methods: {
 
@@ -34,7 +39,7 @@ const behavior = Behavior({
     //method to set value
     setValue(value) {
       this.setData({
-        val: value
+        val:value
       })
     }
   },

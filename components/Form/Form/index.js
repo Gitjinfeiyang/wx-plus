@@ -47,6 +47,10 @@ Component({
       let temp=obj;
       for(let i=0; i<keys.length-1; i++){
         temp = temp[keys[i]];
+        //如果不存在则初始化为空对象
+        if(!temp){
+          temp={}
+        }
       }
       temp[keys[keys.length-1]]=value;
       this.triggerEvent("change",this.properties.model)

@@ -1,4 +1,8 @@
 /* components/Form/Picker/PickerItem/index.wxss */
 .selected{
-  
+  color: #6169DD;
+}
+
+.m-picker-item{
+  padding:30rpx 0; border-top: 1rpx solid #DCDFE6; margin:0 20rpx;
 }
