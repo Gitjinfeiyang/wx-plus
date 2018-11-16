@@ -2,7 +2,7 @@
 .form-item{display:flex; padding:30rpx 0; border-bottom: 1rpx solid #DCDFE6;}
 
 .label{
-  font-size: 32rpx; color: #383A3D;margin-right: 10rpx;
+  font-size: 32rpx; color: #383A3D;margin-right: 10rpx; white-space: nowrap;
 }
 .content{
   flex:1;font-size: 32rpx; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;

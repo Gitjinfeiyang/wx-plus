@@ -1,6 +1,6 @@
 
 <view class="form-example">
-  <m-form id="form" model="{{form}}" rules="{{rules}}"   bindchange="formChange" labelWidth="120">
+  <m-form id="form" model="{{form}}" rules="{{rules}}"   bindchange="formChange" labelWidth="180">
     
     <view class="tip">基本能力展示</view>
 
