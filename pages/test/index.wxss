@@ -1,1 +1,5 @@
 /* pages/test/index.wxss */
+
+.tip{font-size: 20rpx; margin:40rpx 0 0; background:#f1f1f1; color:#666; padding:20rpx;
+  border-radius: 8rpx;}
+.form-example{padding:20rpx;}

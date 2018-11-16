@@ -55,7 +55,8 @@ Component({
   methods: {
     onChange(event,options){
       let dirtyVal= this.properties.output(options.value,this.properties.prop)
-      this.setData({ event,value:options.value })
+      //formitem只接受从model来的数据
+      // this.setData({ event,value:options.value })
       if(!this.data.parent) return;
       this.data.parent.onChange(dirtyVal,this.properties.prop)
     },

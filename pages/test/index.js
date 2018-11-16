@@ -48,11 +48,21 @@ Page({
       },
     ],
 
+    //model -> view 将手机号码分段
     phoneIn(val){
-      return val
+      const phoneArr = val.split('');
+      for (let i = 0; i < phoneArr.length; i++) {
+        if (i == 3 || i == 8) {
+          phoneArr.splice(i, 0, ' ');
+          i++;
+        }
+      }
+      let phone = phoneArr.join('')
+      return phone
     },
+    //view -> model 去除空格
     phoneOut(val){
-      return val
+      return val.replace(/ /g, '')      
     }
 
   },
