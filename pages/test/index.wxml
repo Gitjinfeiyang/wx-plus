@@ -4,21 +4,21 @@
     
     <view class="tip">基本能力展示</view>
 
-    <m-form-item label="姓名" prop="name">
+    <m-form-item label="姓名[{{form.name}}]" prop="name">
       <m-input placeholder='请输入姓名'/>
     </m-form-item>
     
-    <m-form-item label="年龄" prop="info.age">
+    <m-form-item label="年龄[{{form.info.age}}]" prop="info.age">
       <m-input placeholder='this is a native input' value="{{form.info.age}}"></m-input>
     </m-form-item>
       
       <view class="tip">这个示例展示了表单的拦截能力，通过设置input以及output对view层与model数据交换进行处理，以下这个示例对输入手机号进行分段，实际拿到的数据为不分段的。</view>
 
-      <m-form-item label="手机号" prop="phone" input="{{phoneIn}}" output="{{phoneOut}}">
+      <m-form-item label="手机号[{{form.phone}}]" prop="phone" input="{{phoneIn}}" output="{{phoneOut}}">
         <m-input placeholder='手机号' maxlength='13'/>
       </m-form-item>
 
-      <m-form-item label="失焦触发" prop="money" input="{{moneyInput}}" output="{{moneyOutput}}">
+      <m-form-item label="失焦触发[{{form.money}}]" prop="money" input="{{moneyInput}}" output="{{moneyOutput}}">
         <m-input placeholder='你有多少钱' type="number" trigger="blur"/>
       </m-form-item>
       
@@ -27,7 +27,7 @@
 
       <view class="tip">Picker单选的各种用法</view>
 
-      <m-form-item label="性别" prop="sex">
+      <m-form-item label="性别[{{form.sex}}]" prop="sex">
         <m-picker mode="selector" placeholder='请选择性别' range="{{sexList}}" label="label" value="value"/>
       </m-form-item>
 
@@ -44,14 +44,14 @@
 
       <view class="tip">Picker多选</view>
 
-      <m-form-item label="产品" prop="product">
+      <m-form-item label="产品[{{form.product}}]" prop="product">
         <m-picker mode="multiSelector" placeholder='请选择产品' range="{{tree}}" label="name" value="value"/>
       </m-form-item>
       
 
-    <view class="tip">Picker日期选择</view>
+    <view class="tip">Picker日期选择 + 日期转换</view>
 
-    <m-form-item label="生日" prop="birthday">
+    <m-form-item label="生日[{{form.birthday}}]" prop="birthday" output="{{dateOutput}}">
       <m-picker mode="date" placeholder="生日" />
     </m-form-item>
 

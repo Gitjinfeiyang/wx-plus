@@ -75,6 +75,10 @@ Page({
       return value.replace(/,/g,'');
     },
 
+    dateOutput(value){
+      return new Date(value).getTime()
+    },
+
     valid:false,
   },
 

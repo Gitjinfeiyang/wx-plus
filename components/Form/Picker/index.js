@@ -217,6 +217,14 @@ Component({
           }
           break;
 
+        //原则上不应该过滤，但是微信不支持其他时间格式，故统一转换
+        case 'date':
+          let time = formatTime(val,'YYYY-MM-DD');
+          this.setData({
+            pickerIndexes: time, val:time, realVal: time
+          })
+          break;
+
         default :
           this.setData({
             pickerIndexes:val,val,realVal:val

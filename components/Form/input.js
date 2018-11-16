@@ -49,7 +49,17 @@ const behavior = Behavior({
 
 export default behavior;
 
+const addZero = (value) => {
+  if (!value || isNaN(value)) {
+    return '00'
+  }
 
+  if (value < 10) {
+    return '0' + value
+  } else {
+    return value
+  }
+}
 export const formatTime = (value, pattern, start = 0) => {
   if (!value) {
     return
