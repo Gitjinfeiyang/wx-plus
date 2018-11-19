@@ -25,6 +25,10 @@ Component({
     labelWidth:{
       type:Number,
       value:0
+    },
+    showTip:{ //显示表单内提示
+      type:Boolean,
+      value:true
     }
   },
 
@@ -69,36 +73,49 @@ Component({
           }
         }
         rule=temp[keys[keys.length - 1]]||[];
-        item.setRule(rule)
+        item.setRule(rule,this.properties.showTip)
       })
     },
 
     //表单验证 是否显示toast
     //@showToast 是否显示信息
     //@mode 全部校验还是仅校验必填 all | required
-    validate(options={showToast:true,mode:'all'}){
+    validate(options){
+      const myOption = Object.assign({ showToast: true, mode: 'all'},options)
       const items=this.data.formItems;
-      let result={}
+      let result=null
       let valid=true;
       for(let i=0; i<items.length; i++){
-        result=items[i].validateItem(options)
-        if(!result.valid){
-          if(options.showToast){
-            wx.showToast({
-              title: result.rule.message,
-              icon:"none"
-            })
-            console.warn(`Form: Invalid value,<${result.prop}>:[${result.value}]`)            
+          let temp = items[i].validateItem(myOption)
+          //第一次才进行以下操作
+          if((!result)&&!temp.valid){
+            valid = false; 
+            result=temp;         
+            if (myOption.showToast){
+              wx.showToast({
+                title: result.rule.message,
+                icon:"none"
+              })
+              console.warn(`Form: Invalid value,<${result.prop}>:[${result.value}]`) 
+            }
+            //如果不用显示表单内提示，遇到invalid即停止验证
+            // if(!this.properties.showTip){
+            //   break;
+            // }
           }
-          valid=false;
-          break;
-        }
       }
       if(!valid){
         return result
       }
       return {valid};
     },
+
+    //重置表单验证的状态
+    resetFields(){
+      this.data.formItems.forEach((item) => {
+        item.resetField()
+      })
+    }
 
   },
 

@@ -206,15 +206,18 @@ Component({
           break;
 
         case 'custom':
-          for(let i=0; i<this.data.pickerItems.length; i++){
-            if(stringify(this.data.pickerItems[i].properties.value) === stringify(val)){
-              this.data.pickerItems[i].highlight()
-              this.setData({
-                pickerIndexes: val, val: this.data.pickerItems[i].properties.label, realVal: val
-              })
-              break;
-            }
-          }
+          Promise.resolve()
+            .then(() => {
+              for(let i=0; i<this.data.pickerItems.length; i++){
+                if(stringify(this.data.pickerItems[i].properties.value) === stringify(val)){
+                  this.data.pickerItems[i].highlight()
+                  this.setData({
+                    pickerIndexes: val, val: this.data.pickerItems[i].properties.label,realVal:val
+                  })
+                  break;
+                }
+              }
+            })
           break;
 
         //原则上不应该过滤，但是微信不支持其他时间格式，故统一转换

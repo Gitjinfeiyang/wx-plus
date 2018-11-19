@@ -1,6 +1,6 @@
 
 <view class="form-example">
-  <m-form id="form" model="{{form}}" rules="{{rules}}"   bindchange="formChange" labelWidth="180">
+  <m-form id="form" model="{{form}}" rules="{{rules}}"   bindchange="formChange" labelWidth="180" showTip="{{true}}">
     
     <view class="tip">基本能力展示</view>
 
@@ -9,7 +9,7 @@
     </m-form-item>
     
     <m-form-item label="年龄[{{form.info.age}}]" prop="info.age">
-      <m-input placeholder='this is a native input' value="{{form.info.age}}"></m-input>
+      <m-input placeholder='this is a native input' value="{{form.info.age}}" disabled></m-input>
     </m-form-item>
       
       <view class="tip">这个示例展示了表单的拦截能力，通过设置input以及output对view层与model数据交换进行处理，以下这个示例对输入手机号进行分段，实际拿到的数据为不分段的。</view>
@@ -52,7 +52,7 @@
     <view class="tip">Picker日期选择 + 日期转换</view>
 
     <m-form-item label="生日[{{form.birthday}}]" prop="birthday" output="{{dateOutput}}">
-      <m-picker mode="date" placeholder="生日" />
+      <m-picker mode="date" placeholder="生日" bindchange="dateChange"/>
     </m-form-item>
 
 

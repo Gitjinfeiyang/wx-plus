@@ -1,5 +1,5 @@
 // components/FormItem/index.js
-import {isEmpty} from '../input'
+import {isEmpty,isEqual} from '../input'
 
 Component({
   /**
@@ -40,6 +40,10 @@ Component({
     value:'',
     rule:[],
     isRequired:false,
+    valid:null,
+    invalidRule:null,
+    showTip:true,
+    firstTime:true,
   },
 
   ready() {
@@ -68,14 +72,9 @@ Component({
     //using for init value from model
     refreshValue(){
       let val=this.getParentValue()
-      if(val === this.data.value) return;
-      //当formitem与child连接时，child还没有与child的child连接，如果此时set，会找不到child的child,例如pickeritem
-      //过滤未定义值
-      if(val == undefined) val='';
-      Promise.resolve()
-        .then(() => {
-          this.setChildValue(val)
-        })
+      if(isEqual(val,this.data.value) || val == undefined) return;
+      //刷新验证
+      this.setChildValue(val)
     },    
     getParentValue(){
       if(!this.data.parent) return;
@@ -88,18 +87,18 @@ Component({
       }
       return temp;
     },
-    setChildValue(value){
+    setChildValue(value){   
       if(!this.data.child) return;
-      if ((!this.properties.prop) || this.properties.prop === '') return;      
+      if ((!this.properties.prop) || this.properties.prop === '') return;
       //如果child不存在，formitem的值不初始化
       this.setData({
         value: value
       })
-      let dirtyVal = this.properties.input(value, this.properties.prop)  
+      let dirtyVal = this.properties.input(value, this.properties.prop) 
       this.data.child.setValue(dirtyVal)
     },
 
-    setRule(rule){
+    setRule(rule,showTip){
       let isRequired=false;
       rule.forEach((item) => {
         if(item.required){
@@ -107,7 +106,7 @@ Component({
         }
       })
       this.setData({
-        rule,isRequired
+        rule,isRequired,showTip
       })
     },
 
@@ -134,6 +133,9 @@ Component({
           break;
         }
       }
+      this.setData({
+        valid,invalidRule
+      })
       return {
         valid,
         rule:invalidRule,
@@ -141,6 +143,12 @@ Component({
         value:this.data.value
       }
     },
+
+    resetField(){
+      this.setData({
+        valid:true,
+      })
+    }
   },
 
   relations: {
@@ -153,10 +161,10 @@ Component({
         this.refreshValue()
       },
       linkChanged(target) {
-        this.setData({
-          child: target
-        })
-        this.refreshValue()        
+        // this.setData({
+        //   child: target
+        // })
+        // this.refreshValue()        
       },
       unlinked(target) {
         this.setData({
@@ -174,10 +182,7 @@ Component({
         this.refreshValue()
       },
       linkChanged(target) {
-        this.setData({
-          child: target
-        })
-        this.refreshValue()
+        
       },
       unlinked(target) {
         this.setData({
@@ -196,11 +201,11 @@ Component({
         this.refreshValue()
       },
       linkChanged(target) {
-        this.setData({
-          parent: target,
-          labelWidth: target.data.labelWidth
-        })
-        this.refreshValue()
+        // this.setData({
+        //   parent: target,
+        //   labelWidth: target.data.labelWidth
+        // })
+        // this.refreshValue()
       },
       unlinked(target) {
         this.setData({

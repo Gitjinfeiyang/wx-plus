@@ -84,3 +84,17 @@ export function isEmpty(val) {
   if (val.length <= 0) return true;
   return false;
 }
+
+export function isEqual(val1,val2){
+  let type1=typeof val1;
+  let type2 = typeof val2;
+  if(type1 === type2){
+    if(type1 === 'object'){
+      return JSON.stringify(val1) === JSON.stringify(val2)
+    }else{
+      return val1 === val2
+    }
+  }else{
+    return false;
+  }
+}

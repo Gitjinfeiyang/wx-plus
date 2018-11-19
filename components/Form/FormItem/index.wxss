@@ -1,5 +1,6 @@
 /* components/FormItem/index.wxss */
-.form-item{display:flex; padding:30rpx 0; border-bottom: 1rpx solid #DCDFE6;}
+.form-item-wrapper{ padding:30rpx 0; border-bottom: 1rpx solid #DCDFE6;}
+.form-item{display:flex;}
 
 .label{
   font-size: 32rpx; color: #383A3D;margin-right: 10rpx; white-space: nowrap;
@@ -12,4 +13,8 @@ color: #666; text-align: right;
 
 .placeholder{color:#cfcfcf;}
 
-.form-item.required .label:after{display: inline-block; content:'*'; color:#f00; vertical-align: middle; font-size: 20rpx; margin-left: 4rpx;}
+.form-item-wrapper.required .form-item .label:after{display: inline-block; content:'*'; color:#f00; vertical-align: middle; font-size: 20rpx; margin-left: 4rpx;}
+
+/* .form-item-wrapper.invalid{border-bottom:4rpx solid #f00;} */
+
+.form-item-wrapper .tip{padding:8rpx 12rpx; font-size: 20rpx; background:rgb(255,240,240);  color:rgb(255,0,0); border-radius: 8rpx;}

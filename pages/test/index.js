@@ -79,7 +79,9 @@ Page({
       return new Date(value).getTime()
     },
 
-    valid:false,
+
+
+    valid:true,
   },
 
   /**
@@ -87,6 +89,12 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  dateChange({ detail: { value } }) {
+    this.setData({
+      'form.info.age': parseInt((Date.now() - new Date(value).getTime()) / 1000 / 60 / 60 / 24 / 30/12)
+    })
   },
 
   onPickerChange(e){
@@ -100,9 +108,9 @@ Page({
       form:detail
     })
     const form = this.selectComponent("#form")
-    this.setData({
-      valid: form.validate({ showToast: false, mode: 'required' })
-    })
+    // this.setData({
+      form.validate({ showToast: false, mode: 'all' })
+    // })
     
   },
 

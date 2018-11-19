@@ -1,7 +1,10 @@
 <!--components/FormItem/index.wxml-->
-<view class="form-item {{isRequired&&'required'}}">
-  <view class="label" style="{{labelWidth?('flex:0 '+(labelWidth||160)+'rpx;'):'flex:1;'}}">{{label}}</view>
-  <view class="content">
-    <slot></slot>
+<view class="form-item-wrapper {{isRequired&&'required'}} {{(valid === false)&&'invalid'}}">
+  <view class="form-item">
+    <view class="label" style="{{labelWidth?('flex:0 '+(labelWidth||160)+'rpx;'):'flex:1;'}}">{{label}}</view>
+    <view class="content">
+      <slot></slot>
+    </view>
   </view>
+  <view class="tip" wx:if="{{showTip&&invalidRule&&invalidRule.message}}">{{invalidRule.message}}</view>
 </view>
