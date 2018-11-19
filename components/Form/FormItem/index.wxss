@@ -1,15 +1,17 @@
 /* components/FormItem/index.wxss */
-.form-item-wrapper{ padding:30rpx 0; border-bottom: 1rpx solid #DCDFE6;}
+.form-item-wrapper{ padding:30rpx 0;}
+.border-bottom{width:100%; height:1rpx; background:#DCDFE6; transform:scaleY(0.5);}
 .form-item{display:flex;}
 
 .label{
-  font-size: 32rpx; color: #383A3D;margin-right: 10rpx; white-space: nowrap;
+  font-size: 32rpx; color: #383A3D;margin-right: 10rpx; white-space: nowrap;vertical-align: top;
+  text-align: left;
 }
 .content{
   flex:1;font-size: 32rpx; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-color: #666; text-align: right;
+color: #666; text-align: right; vertical-align: top;
 }
-.content input,.content picker{color:#666;}
+.content input,.content picker{color:#666;  height:auto; min-height: none;}
 
 .placeholder{color:#cfcfcf;}
 
@@ -17,4 +19,5 @@ color: #666; text-align: right;
 
 /* .form-item-wrapper.invalid{border-bottom:4rpx solid #f00;} */
 
-.form-item-wrapper .tip{padding:8rpx 12rpx; font-size: 20rpx; background:rgb(255,240,240);  color:rgb(255,0,0); border-radius: 8rpx;}
+.form-item-wrapper .tip{padding:8rpx 12rpx; font-size: 20rpx; background:rgb(255,240,240);  color:rgb(255,0,0); border:1rpx solid rgb(255,200,200); border-radius: 8rpx;
+  text-align: right;}

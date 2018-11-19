@@ -4,6 +4,7 @@
     "m-form-item": "../../components/Form/FormItem/index",
     "m-input":"../../components/Form/Input/index",
     "m-picker":"../../components/Form/Picker/index",
-    "m-picker-item":"../../components/Form/Picker/PickerItem/index"
+    "m-picker-item": "../../components/Form/Picker/PickerItem/index",
+    "address-select":"../../components/AddressSelect/index"
   }
 }

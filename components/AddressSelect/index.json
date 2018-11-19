@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "m-form": "../Form/Form/index",
+    "m-form-item": "../Form/FormItem/index",
+    "m-input": "../Form/Input/index",
+    "m-picker": "../Form/Picker/index",
+    "m-picker-item": "../Form/Picker/PickerItem/index"
+  }
+}

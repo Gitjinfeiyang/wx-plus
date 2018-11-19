@@ -1,0 +1,17 @@
+<m-form model="{{form}}" bindchange="formChange">
+<view class="address-form">
+  <m-form-item label="所在国家或地区" prop="value">
+    <m-picker mode="multiSelector" range="{{address}}" label="name" value="code" childrenKey="districts" placeholder="请选择国家和地区" bindchange="onCountryChange"/>
+  </m-form-item>
+  <m-form-item label="国家名称" prop="country.name" wx:if="{{form.value[0] == 'OTHER'}}">
+    <m-input  placeholder="请输入国家名称"/>
+  </m-form-item>
+  <m-form-item label="所在省市"  wx:if="{{form.value[0] == 'OTHER'}}" prop="province.name">
+    <m-input placeholder='请输入省市'/>
+  </m-form-item>
+  <m-form-item label="详细地址" prop="detail">
+    <m-input placeholder='请输入详细地址'/>
+  </m-form-item>
+</view>
+</m-form>
+<button bindtap="save" class="primary-button">保存</button>

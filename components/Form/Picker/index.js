@@ -55,6 +55,24 @@ Component({
 
     title:{ // mode 为 custom时
       type:String,
+    },
+
+    popHeight: { // mode 为 custom时 ,无height则为全屏
+      type:String
+    },
+
+    childrenKey:{
+      type:String,
+      value:'children'
+    },
+
+    customLabel:{ // 自定义未产开状态内容
+      type:String,
+      observer(val){
+        this.setData({
+          val
+        })
+      }
     }
 
 
@@ -74,6 +92,22 @@ Component({
     pickerItems:[],//custom模式
     showCustomWrapper:false,//custom
     currentSelectedItem:null,//custom
+    offsetHeight:null,
+    lastScrollTop:0,
+  },
+
+
+  ready(){
+    if(this.properties.mode === 'custom'&&!this.properties.height){
+      const query = wx.createSelectorQuery()
+      query.selectViewport().boundingClientRect()
+      query.exec((res) => {
+        this.setData({
+          offsetHeight:res[0].height
+        })
+      })
+      
+    }
   },
 
   /**
@@ -98,7 +132,7 @@ Component({
       if(column == multiRange.length -1){
 
       }else{
-        multiRange[column+1] = multiRange[column][value].children||[]
+        multiRange[column+1] = multiRange[column][value][this.properties.childrenKey]||[]
       }
       this.setData({
         multiRange
@@ -123,6 +157,8 @@ Component({
           let text = '';
           let realValue=[]
           index.forEach((valItem, i) => {
+            //如果没有选项，但是valitem会是0
+            if(!multiRange[i][valItem]) return;
             text+=(' '+multiRange[i][valItem][label]||'')
             realValue.push(multiRange[i][valItem][value])
           })
@@ -149,7 +185,7 @@ Component({
 
       }
 
-      this.onChange({detail:{value:this.data.realValue}})
+      this.onChange({detail:{value:this.data.realValue,label:this.data.val}})
     },
 
     //overwrite
@@ -195,7 +231,7 @@ Component({
               selectI=0;
             }
               pickerIndexes[index] = selectI;
-              currentRange = currentRange[selectI].children || []
+              currentRange = currentRange[selectI][this.properties.childrenKey] || []
               if (index < val.length - 1) {
                 multiRange[index + 1] = currentRange
               }
@@ -233,7 +269,15 @@ Component({
             pickerIndexes:val,val,realVal:val
           })
       }
+    },
 
+    bindScroll({detail:{scrollTop,scrollHeight}}){
+      if(scrollTop+this.data.offsetHeight >= scrollHeight && scrollTop > this.data.lastScrollTop+100){
+        this.setData({
+          lastScrollTop:scrollTop
+        })
+        this.triggerEvent("reachbottom")
+      }
     },
 
   },

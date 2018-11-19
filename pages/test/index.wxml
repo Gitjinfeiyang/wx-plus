@@ -31,18 +31,29 @@
         <m-picker mode="selector" placeholder='请选择性别' range="{{sexList}}" label="label" value="value"/>
       </m-form-item>
 
+      
+
+      <m-picker mode="selector" placeholder='请选择性别' range="{{sexList}}" label="label" value="value" bindchange='onPickerChange' model="{{form.sex}}"/>
+
+      <view class="tip">Picker最灵活的形态，支持自定义选择，选项为PickerItem，支持滑动触底事件</view>
       <m-form-item label="自定义选择" prop="sex">
         <m-picker mode="custom" placeholder="sex" title="自定义选择示例">
           <m-picker-item wx:for="{{sexList}}" value="{{item.value}}" label="{{item.label}}" wx:key="{{index}}">
             label:{{item.label}},value:{{item.value}}
           </m-picker-item>
+          <m-picker-item wx:for="{{20}}" value="{{item}}" label="{{item}}" wx:key="{{index}}">{{item}}</m-picker-item>
         </m-picker>
       </m-form-item>
 
-      <m-picker mode="selector" placeholder='请选择性别' range="{{sexList}}" label="label" value="value" bindchange='onPickerChange' model="{{form.sex}}"/>
+      <view class="tip">自定义Picker，不使用PickerItem，内容自定义</view>
+      <m-form-item label="出生地点" prop="address">
+        <m-picker customLabel="{{form.address.country.name + form.address.province.name }}" id="addressPicker" mode="custom" placeholder="自定义选择地址" title="选择地址">
+          <address-select value="{{form.address}}" bindchange="addressChange"></address-select>
+        </m-picker>
+      </m-form-item>
 
 
-      <view class="tip">Picker多选</view>
+      <view class="tip">Picker多选 多选range属性需要为tree，选项有多少列需要通过value数组长度指定</view>
 
       <m-form-item label="产品[{{form.product}}]" prop="product">
         <m-picker mode="multiSelector" placeholder='请选择产品' range="{{tree}}" label="name" value="value"/>

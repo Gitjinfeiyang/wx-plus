@@ -14,6 +14,16 @@ Page({
       sex:null,
       product:['list1','itm2'],
       birthday:'2011-10-10',
+      address:{
+        value:['CHINA','140000'],
+        detail:'',
+        country:{
+          name:''
+        },
+        province:{
+          name:''
+        }
+      }
     },
 
     rules:{
@@ -101,6 +111,14 @@ Page({
     this.setData({
       'form.sex':e.detail.value
     })
+  },
+
+  addressChange({detail}){
+    const p = this.selectComponent("#addressPicker")
+    this.setData({
+      'form.address':detail
+    })
+    p.hideItemWrapper()
   },
 
   formChange({detail}){

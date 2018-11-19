@@ -10,27 +10,36 @@
   fields="{{fields}}"
   bindchange="bindChange"
   bindcolumnchange="bindcolumnchange"
+  class="picker-trigger"
 >
-<view class="m-picker" wx:if="{{val&&val.length>0}}">{{val}}</view>
+<view class="m-picker" wx:if="{{val&&val.length>0}}">
+    {{val}}
+</view>
 <view class="placeholder" wx:else>{{placeholder}}</view>
+<image src="../assets/arrow_right.png" class="picker-arrow-right"></image>
 </picker>
 
 <view class="m-custom-picker" wx:else>
   <view class="picker-trigger" bindtap="showItemWrapper">
-    <view class="m-picker" wx:if="{{val&&val.length>0}}">{{val}}</view>
+    <view class="m-picker" wx:if="{{val&&val.length>0}}">
+        {{val}}
+    </view>
     <view class="placeholder" wx:else>{{placeholder}}</view>
+    <image src="../assets/arrow_right.png" class="picker-arrow-right"></image>    
   </view>
   <view class="picker-mask" wx:if="{{showCustomWrapper}}" bindtap="hideItemWrapper"></view>
-  <view class="pop-wrapper">
-    <view class="picker-title-bar" wx:if="{{showCustomWrapper && title}}">
-    {{title}}
-    <view class="close-button" bindtap="hideItemWrapper">
-      <view class="close-1"></view>
-      <view class="close-2"></view>
+  <view class="pop-wrapper {{showCustomWrapper?'show':'hide'}}" style="{{popHeight&&('height:'+popHeight)}}">
+    <view class="picker-title-bar" wx:if="{{showCustomWrapper}}">
+      {{title}}
+      <view class="close-button" bindtap="hideItemWrapper">
+        <view class="close-1"></view>
+        <view class="close-2"></view>
+      </view>
     </view>
+    <view catchtouchmove='{{true}}' class="picker-item-wrapper">
+      <scroll-view style="height:100%;" scroll-y="true" bindscroll="bindScroll">
+        <slot></slot>
+      </scroll-view>
     </view>
-    <scroll-view scroll-y class="picker-item-wrapper" style="{{showCustomWrapper?'display:block;':'display:none;'}}">
-      <slot></slot>
-    </scroll-view>
   </view>
 </view>

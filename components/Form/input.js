@@ -10,7 +10,8 @@ const behavior = Behavior({
       }
     },
     placeholder:{
-      type:String //options
+      type:String, //options
+      value:''
     }, 
     disabled: {
       type: Boolean,
@@ -31,7 +32,7 @@ const behavior = Behavior({
 
     //trigger change event and notice parent to change
     onChange(e) {
-      this.triggerEvent("change",e.detail,{value:e.detail.value})
+      this.triggerEvent("change",e.detail,{value:e.detail.value,label:e.detail.label})
       if(!this.data.parent) return;
       this.data.parent.onChange(e,{ value: e.detail.value })
     },

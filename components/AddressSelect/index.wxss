@@ -1,0 +1,19 @@
+.primary-button {
+    width: 560rpx;
+    height: 92rpx;
+    border-radius: 160rpx;
+    background-color: #6169DD;
+    text-align: center;
+    line-height: 92rpx;
+    color: #fff;
+    font-size: 36rpx;
+    display: inline-block;
+    box-shadow: 0 8px 25px 0 rgba(84,93,255,0.30);
+    margin-top: 60rpx;
+  }
+
+.address-form{padding:40rpx 20rpx;}
+    /* .primary-button[disabled]{
+        background:#BCC0CC;color:#fff; border:none; box-shadow: none;
+    }
+    .primary-button::after{border:none;} */

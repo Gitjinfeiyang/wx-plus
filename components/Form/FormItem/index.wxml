@@ -8,3 +8,4 @@
   </view>
   <view class="tip" wx:if="{{showTip&&invalidRule&&invalidRule.message}}">{{invalidRule.message}}</view>
 </view>
+  <view class='border-bottom'></view>
