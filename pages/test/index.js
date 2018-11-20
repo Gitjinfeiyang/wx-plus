@@ -15,13 +15,14 @@ Page({
       product:['list1','itm2'],
       birthday:'2011-10-10',
       address:{
-        value:['CHINA','140000'],
         detail:'',
         country:{
-          name:''
+          name:'',
+          code:''
         },
         province:{
-          name:''
+          name:'',
+          code:''
         }
       }
     },

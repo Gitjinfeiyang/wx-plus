@@ -8,9 +8,7 @@ Component({
     value:{
       type:Object,
       observer(value){
-        this.setData({
-          form:value
-        })
+        this.initValue(value)
       }
     }
   },
@@ -20,15 +18,17 @@ Component({
    */
   data: {
     form:{
-      value:['',''],
-      country:{
-        code:'',
-        name:''
-      },
-      province:{},
-      city:{},
-      area:{},
-      detail:''
+      value: ['', ''],
+      address:{
+        country:{
+          code:'',
+          name:''
+        },
+        province:{code:'',name:''},
+        city: { code: '', name: ''},
+        area: { code: '', name: ''},
+        detail:''
+      }      
     },
     address,
   },
@@ -49,7 +49,7 @@ Component({
     onCountryChange({detail}){
       let names=detail.label.trim().split(" ");
       this.setData({
-        form:{
+        'form.address':{
           country:{
             name:names[0]=='其他'?'':names[0],
             code:detail.value[0]
@@ -67,7 +67,17 @@ Component({
     },
 
     save(){
-      this.triggerEvent('change',this.data.form)
+      this.triggerEvent('change',this.data.form.address)
+    },
+
+    initValue(value){
+      this.setData({
+        'form.address': value
+      })
+      const {country,province}=value;
+      this.setData({
+        'form.value':[country.code||'',province.code||'']
+      })
     }
   }
 })

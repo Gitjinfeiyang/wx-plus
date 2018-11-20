@@ -47,7 +47,7 @@
 
       <view class="tip">自定义Picker，不使用PickerItem，内容自定义</view>
       <m-form-item label="出生地点" prop="address">
-        <m-picker customLabel="{{form.address.country.name + form.address.province.name }}" id="addressPicker" mode="custom" placeholder="自定义选择地址" title="选择地址">
+        <m-picker customLabel="{{form.address.country.name + form.address.province.name }}" id="addressPicker" mode="custom" placeholder="自定义选择地址" title="选择地址" popHeight="60%">
           <address-select value="{{form.address}}" bindchange="addressChange"></address-select>
         </m-picker>
       </m-form-item>
