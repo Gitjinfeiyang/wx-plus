@@ -9,9 +9,8 @@
     font-size: 36rpx;
     display: inline-block;
     box-shadow: 0 8px 25px 0 rgba(84,93,255,0.30);
-    margin-top: 60rpx;
   }
-
+.button-wrapper{position:absolute; bottom:40rpx; left:0; width:100%; text-align: center;}
 .address-form{padding:40rpx 20rpx;}
     /* .primary-button[disabled]{
         background:#BCC0CC;color:#fff; border:none; box-shadow: none;

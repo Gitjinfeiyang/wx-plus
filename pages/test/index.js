@@ -15,10 +15,10 @@ Page({
       product:['list1','itm2'],
       birthday:'2011-10-10',
       address:{
-        detail:'',
+        detail:'滨江区',
         country:{
-          name:'',
-          code:''
+          name:'中国',
+          code:'CHINA'
         },
         province:{
           name:'',

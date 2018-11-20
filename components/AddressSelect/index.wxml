@@ -9,9 +9,11 @@
   <m-form-item label="所在省市"  wx:if="{{form.value[0] == 'OTHER'}}" prop="address.province.name">
     <m-input placeholder='请输入省市'/>
   </m-form-item>
-  <m-form-item label="详细地址" prop="address.detail">
+  <!-- <m-form-item label="详细地址" prop="address.detail">
     <m-input placeholder='请输入详细地址'/>
-  </m-form-item>
+  </m-form-item> -->
 </view>
 </m-form>
-<button bindtap="save" class="primary-button">保存</button>
+<view class="button-wrapper">
+  <button bindtap="save" class="primary-button">保存</button>
+</view>
