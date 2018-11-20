@@ -2993,24 +2993,6 @@ const addressData = [
     ],
   },
 
-  {
-    name: '中国澳门',
-    code: 'CN_MO',
-    type: 'province',
-    districts: []
-  },
-  {
-    name: '中国香港',
-    code: 'CN_HK',
-    type: 'province',
-    districts: []
-  },
-  {
-    name: '中国台湾',
-    code: 'CN_TW',
-    type: 'province',
-    districts: []
-  },
 ];
 export const TaiWan =  [{
     "code": "710001",
@@ -3083,6 +3065,20 @@ export const address=[
     name: '中国',
     code: 'CHINA',
     districts:addressData
+  },
+
+  {
+    name: '中国澳门',
+    code: 'CN_MO',
+  },
+  {
+    name: '中国香港',
+    code: 'CN_HK',
+  },
+  {
+    name: '中国台湾',
+    code: 'CN_TW',
+    districts:TaiWan
   },
   {
     name: '其他',

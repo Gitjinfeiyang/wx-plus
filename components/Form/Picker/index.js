@@ -156,11 +156,19 @@ Component({
           let multiRange = this.data.multiRange;
           let text = '';
           let realValue=[]
+          let rangeItem={},rangeLabel='',rangeValue='';
           index.forEach((valItem, i) => {
             //如果没有选项，但是valitem会是0
-            if(!multiRange[i][valItem]) return;
-            text+=(' '+multiRange[i][valItem][label]||'')
-            realValue.push(multiRange[i][valItem][value])
+            rangeItem = multiRange[i][valItem];
+            if(!multiRange[i][valItem]){
+              rangeLabel='';
+              rangeValue='';
+            }else{
+              rangeLabel=rangeItem[label];
+              rangeValue=rangeItem[value];
+            }
+            text+=(' '+rangeLabel||'')
+            realValue.push(rangeValue)
           })
           this.setData({
             pickerIndexes, multiRange, val: text,
@@ -231,7 +239,7 @@ Component({
               selectI=0;
             }
               pickerIndexes[index] = selectI;
-              currentRange = currentRange[selectI][this.properties.childrenKey] || []
+            currentRange = currentRange[selectI]&&currentRange[selectI][this.properties.childrenKey] || []
               if (index < val.length - 1) {
                 multiRange[index + 1] = currentRange
               }
