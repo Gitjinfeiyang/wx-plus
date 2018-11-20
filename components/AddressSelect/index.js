@@ -75,6 +75,7 @@ Component({
         'form.address': value
       })
       const {country,province}=value;
+      if((!country) || !province) return;
       this.setData({
         'form.value':[country.code||'',province.code||'']
       })
