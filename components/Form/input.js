@@ -99,3 +99,20 @@ export function isEqual(val1,val2){
     return false;
   }
 }
+
+export function traverseObjectByProp(obj,prop,callback){
+  //支持[]，用于支持数组
+  let keys = prop.replace(/]/g, '').replace(/\[/g, '.').split('.');
+  let temp=obj;
+  const max=keys.length-1;
+  for (let i = 0; i < keys.length-1; i++) {
+    callback(temp,i,keys)
+    temp = temp[keys[i]];
+    //如果不存在则初始化为空对象
+    if (!temp) {
+      temp = {}
+    }
+  }
+  callback(temp,max,keys);
+  temp=temp[keys[max]]  
+}

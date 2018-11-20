@@ -1,5 +1,5 @@
 // components/BetterForm/index.js
-import {isEmpty} from '../input'
+import { isEmpty, traverseObjectByProp} from '../input'
 
 Component({
   /**
@@ -44,35 +44,24 @@ Component({
    */
   methods: {
     onChange(value,prop){
-      let keys=prop.split('.');
       let obj=this.properties.model;
-      let temp=obj;
-      for(let i=0; i<keys.length-1; i++){
-        temp = temp[keys[i]];
-        //如果不存在则初始化为空对象
-        if(!temp){
-          temp={}
+      traverseObjectByProp(obj,prop,(item,index,keys) => {
+        if(index == keys.length-1){
+          item[keys[index]] = value;
         }
-      }
-      temp[keys[keys.length-1]]=value;
+      })
       this.triggerEvent("change",this.properties.model)
     },
 
     distributeRule(){
+      let obj = this.properties.rules;
       this.data.formItems.forEach((item) => {
-        const prop=item.properties.prop;
-        let keys = prop.split('.');
-        let obj = this.properties.rules;
-        let temp = obj;
         let rule=[];
-        for (let i = 0; i < keys.length - 1; i++) {
-          temp = temp[keys[i]];
-          //如果不存在则初始化为空对象
-          if (!temp) {
-            temp = {}
+        traverseObjectByProp(obj,item.properties.prop,(objItem,index,keys) => {
+          if(index == keys.length-1){
+            rule=objItem[keys[index]]||[]
           }
-        }
-        rule=temp[keys[keys.length - 1]]||[];
+        })
         item.setRule(rule,this.properties.showTip)
       })
     },

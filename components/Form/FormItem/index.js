@@ -1,5 +1,5 @@
 // components/FormItem/index.js
-import {isEmpty,isEqual} from '../input'
+import { isEmpty, isEqual, traverseObjectByProp} from '../input'
 
 Component({
   /**
@@ -79,15 +79,13 @@ Component({
     getParentValue(){
       if(!this.data.parent) return;
       if((!this.properties.prop)||this.properties.prop==='') return;
-      let keys = this.properties.prop.split('.');
       let obj = this.data.parent.properties.model;
-      let temp = obj;
-      for (let i = 0; i < keys.length; i++) {
-        temp = temp[keys[i]];
-        if(i < keys.length-1 && !temp){
-          temp={}
+      let temp=null;
+      traverseObjectByProp(obj,this.properties.prop,(item,index,keys) => {
+        if(index == keys.length-1){
+          temp=item[keys[index]]
         }
-      }
+      })
       return temp;
     },
     setChildValue(value){   
