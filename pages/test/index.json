@@ -5,6 +5,7 @@
     "m-input":"../../components/Form/Input/index",
     "m-picker":"../../components/Form/Picker/index",
     "m-picker-item": "../../components/Form/Picker/PickerItem/index",
-    "address-select":"../../components/AddressSelect/index"
+    "address-select": "../../components/AddressSelect/index",
+    "swipe-list-item":"../../components/SwipeListItem/index"
   }
 }

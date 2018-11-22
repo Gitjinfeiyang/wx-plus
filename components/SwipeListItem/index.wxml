@@ -1,0 +1,12 @@
+<!--components/SwipeListItem/index.wxml-->
+<swiper  current="{{current}}"  style="height:{{height}};z-index:{{current === 1?101:1}};" bindanimationfinish='currentChange' 
+  autoplay="{{false}}" interval="{{false}}" duration="{{300}}">
+    <swiper-item class="content-item" id="{{id}}">
+      <slot></slot>
+    </swiper-item>
+    <swiper-item class="button-wrapper" wx:if="{{ready}}">
+      <button class="button confirm" style="height:{{height}}; line-height:{{height}};" bindtap="onConfirm"><view class="text">删除</view></button>
+      <button class="button cancel" style="height:{{height}}; line-height:{{height}};" bindtap="onCancel"><view class="text">取消</view></button>
+    </swiper-item>
+</swiper>
+<view class="mask" wx:if="{{current === 1}}" catchtouchstart='toIndex'></view>

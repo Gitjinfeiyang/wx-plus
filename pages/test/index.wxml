@@ -1,5 +1,6 @@
 
 <view class="form-example">
+<view class="title">表单</view>
   <m-form id="form" model="{{form}}" rules="{{rules}}"   bindchange="formChange" labelWidth="180" showTip="{{true}}">
     
     <view class="tip">基本能力展示</view>
@@ -72,4 +73,14 @@
   <view class="tip">针对必填验证以禁用按钮需求，可在表单验证方法添加参数[mode="required"]即可只验证必填</view>
   <button bindtap="autoInput" disabled='{{!valid}}'>提交</button>
   </m-form>
+
+
+<view class="title">滑动删除</view>
+<swipe-list-item wx:for="{{sexList}}" data-index="{{index}}" bindconfirm="onDelete">
+  {{item.label}}
+  <view class="tip">测试滑动删除功能</view>
+</swipe-list-item>
 </view>
+
+
+

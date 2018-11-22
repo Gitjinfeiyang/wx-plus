@@ -142,6 +142,12 @@ Page({
 
     const form=this.selectComponent("#form")
     form.validate()
+  },
+
+  onDelete(e){
+    wx.showToast({
+      title:'删除'+this.data.sexList[e.currentTarget.dataset.index].label
+    })
   }
 })
 

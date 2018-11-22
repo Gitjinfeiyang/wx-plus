@@ -1,0 +1,12 @@
+/* components/SwipeListItem/index.wxss */
+.button-wrapper{
+  display: flex; 
+}
+.button-wrapper .button{border:none;flex:1; color:#fff; border-radius: 0;}
+.button-wrapper .button:after{border:none;}
+.button.confirm{background:#f00;}
+.button.cancel{background:#cfcfcf;}
+
+swiper{position:relative;}
+.content-item{height:fit-content !important;}
+.mask{position:fixed; top:0; left:0; width:100vw; height:100vh; z-index: 100;}
