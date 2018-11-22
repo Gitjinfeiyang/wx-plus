@@ -85,7 +85,7 @@ Component({
                 title: result.rule.message,
                 icon:"none"
               })
-              console.warn(`Form: <MODEL.${result.prop}><${result.rule.message}> : ${result.value}`) 
+              console.warn(`Form: <${result.rule.message}><MODEL.${result.prop}> : ${result.value}`) 
             }
             //如果不用显示表单内提示，遇到invalid即停止验证
             // if(!this.properties.showTip){
