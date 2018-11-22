@@ -85,7 +85,7 @@ Component({
                 title: result.rule.message,
                 icon:"none"
               })
-              console.warn(`Form: Invalid value,<${result.prop}>:[${result.value}]`) 
+              console.warn(`Form: <MODEL.${result.prop}><${result.rule.message}> : ${result.value}`) 
             }
             //如果不用显示表单内提示，遇到invalid即停止验证
             // if(!this.properties.showTip){
