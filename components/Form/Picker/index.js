@@ -12,6 +12,9 @@ function stringify(val){
 }
 
 Component({
+  options: {
+    multipleSlots: true // 在组件定义时的选项中启用多slot支持
+  },
   behaviors: [behavior],
   /**
    * 组件的属性列表
@@ -73,6 +76,11 @@ Component({
           val
         })
       }
+    },
+
+    slot:{ //picktrigger使用slot
+      type:Boolean,
+      value:false
     }
 
 

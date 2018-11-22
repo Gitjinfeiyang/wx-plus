@@ -21,11 +21,16 @@
 
 <view class="m-custom-picker" wx:else>
   <view class="picker-trigger" bindtap="showItemWrapper">
-    <view class="m-picker" wx:if="{{val&&val.length>0}}">
-        {{val}}
-    </view>
-    <view class="placeholder" wx:else>{{placeholder}}</view>
-    <image src="../assets/arrow_right.png" class="picker-arrow-right"></image>    
+    <block wx:if="{{!slot}}">
+      <view class="m-picker" wx:if="{{val&&val.length>0}}">
+          {{val}}
+      </view>
+      <view class="placeholder" wx:else>{{placeholder}}</view>
+      <image src="../assets/arrow_right.png" class="picker-arrow-right"></image>    
+    </block>
+    <block wx:else>
+      <slot name="picker-trigger"></slot>
+    </block>
   </view>
   <view class="picker-mask" wx:if="{{showCustomWrapper}}" bindtap="hideItemWrapper"></view>
   <view class="pop-wrapper {{showCustomWrapper?'show':'hide'}}" style="{{popHeight&&('height:'+popHeight)}}">

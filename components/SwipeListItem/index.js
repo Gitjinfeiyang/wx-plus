@@ -1,4 +1,5 @@
 // components/SwipeListItem/index.js
+//小程序无法阻止默认行为，左右滑动无法禁止上下滑动，使用swiper满足功能需要
 const app=getApp();
 const margin=200; //px
 Component({
