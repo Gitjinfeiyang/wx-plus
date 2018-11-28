@@ -2,5 +2,5 @@
 
 .tip{font-size: 20rpx; margin:60rpx 0 10rpx 0; background:#f1f1f1; color:#666; padding:20rpx;
   border-radius: 8rpx;}
-.form-example{padding:20rpx;}
+.form-example{padding:20rpx; height:100%; box-sizing: border-box;}
 .title{margin-top: 40rpx; margin-bottom: 20rpx; font-size: 60rpx;}

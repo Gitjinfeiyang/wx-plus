@@ -1,0 +1,12 @@
+/* components/SwipeTab/index.wxss */
+.swipe-tab{height:100%;}
+.display-flex{display: flex;}
+.flex-1{flex:1;}
+.tabbar-header{background: #FFFFFF;box-shadow: 0 4rpx 8rpx 0 rgba(204,204,204,0.50); white-space: nowrap;}
+.tabbar-header .item-wrapper {text-align: center; line-height: 90rpx;font-size: 36rpx;
+color: #999999; display: inline-block;}
+.tabbar-header .item-wrapper.active{color: #35446E;}
+.tabbar-header .item-wrapper.active .text-wrapper{border-bottom: 4rpx solid #35446E;}
+.item-wrapper .text-wrapper{display: inline-block; padding:0 40rpx;}
+.swipe-tab .content{height:calc(100% - 94rpx);}
+.swipe-tab .content .content-item{height:100%;}
