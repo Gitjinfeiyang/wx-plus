@@ -9,7 +9,10 @@ Component({
   properties: {
     tabbar:{
       type:Array,
-      value:[]
+      value:[],
+      observer(value){
+        this&&this.calcNeedDisplayBar(value)
+      }
     },
     flex:{ //tabbar是否单行显示,否则可横向滚动
       type:Boolean,
@@ -21,7 +24,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    current:0
+    current:0,
+    needDisplayBar:true
   },
 
   /**
@@ -37,6 +41,15 @@ Component({
       this.setData({
         current:parseInt(index)
       })
+    },
+    calcNeedDisplayBar(value){
+      let needDisplayBar=true;
+      if(value.length<=1){
+        needDisplayBar=false;
+      }
+        this.setData({
+          needDisplayBar
+        })
     }
   }
 

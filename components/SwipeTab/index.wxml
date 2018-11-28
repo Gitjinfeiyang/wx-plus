@@ -1,15 +1,17 @@
 <view class="swipe-tab">
-  <view class="tabbar-header display-flex" wx:if="{{flex}}">
-    <view class="item-wrapper flex-1 {{current == index&&'active'}}" wx:for="{{tabbar}}" wx:key="{{index}}" data-index="{{index}}" bindtap="swipeToIndex">
-      <view class="text-wrapper">{{item}}</view>
+  <block wx:if="{{needDisplayBar}}">
+    <view class="tabbar-header display-flex" wx:if="{{flex}}">
+      <view class="item-wrapper flex-1 {{current == index&&'active'}}" wx:for="{{tabbar}}" wx:key="{{index}}" data-index="{{index}}" bindtap="swipeToIndex">
+        <view class="text-wrapper">{{item}}</view>
+      </view>
     </view>
-  </view>
-  <scroll-view scroll-x class="tabbar-header" wx:else>
-    <view class="item-wrapper {{current == index&&'active'}}" wx:for="{{tabbar}}" wx:key="{{index}}" data-index="{{index}}" bindtap="swipeToIndex">
-      <view class="text-wrapper">{{item}}</view>
-    </view>
-  </scroll-view>
-  <swiper class="content"  current="{{current}}" bindanimationfinish='currentChange' 
+    <scroll-view scroll-x class="tabbar-header" wx:else>
+      <view class="item-wrapper {{current == index&&'active'}}" wx:for="{{tabbar}}" wx:key="{{index}}" data-index="{{index}}" bindtap="swipeToIndex">
+        <view class="text-wrapper">{{item}}</view>
+      </view>
+    </scroll-view>
+  </block>
+  <swiper class="content (!needDisplayBar)&&full-height"  current="{{current}}" bindanimationfinish='currentChange' 
     autoplay="{{false}}" interval="{{false}}" duration="{{300}}">
       <swiper-item class="content-item" wx:for="{{tabbar}}" wx:key="{{index}}">
         <slot name="{{item}}"></slot>
