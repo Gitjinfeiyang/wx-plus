@@ -11,7 +11,7 @@
       </view>
     </scroll-view>
   </block>
-  <swiper class="content (!needDisplayBar)&&full-height"  current="{{current}}" bindanimationfinish='currentChange' 
+  <swiper class="content {{(!needDisplayBar)&&'full-height'}}"  current="{{current}}" bindanimationfinish='currentChange' 
     autoplay="{{false}}" interval="{{false}}" duration="{{300}}">
       <swiper-item class="content-item" wx:for="{{tabbar}}" wx:key="{{index}}">
         <slot name="{{item}}"></slot>
