@@ -36,11 +36,10 @@ Component({
       this.setData({
         current
       })
+      this.triggerEvent("change",{current})
     },
     swipeToIndex({currentTarget:{dataset:{index}}}){
-      this.setData({
-        current:parseInt(index)
-      })
+      this.currentChange({detail:{current:parseInt(index)}})
     },
     calcNeedDisplayBar(value){
       let needDisplayBar=true;
