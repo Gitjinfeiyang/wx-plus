@@ -77,6 +77,7 @@ Component({
       //刷新验证
       this.setChildValue(val)
       if(!this.data.firstTime){
+        if(!this.data.showTip) return; //如果不显示提示则无需自动验证
         this.validateItem({ mode: 'all' })
       }else{
         this.data.firstTime=false;      
