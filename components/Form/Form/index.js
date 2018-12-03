@@ -72,31 +72,29 @@ Component({
     validate(options){
       const myOption = Object.assign({ showToast: true, mode: 'all'},options)
       const items=this.data.formItems;
-      let result=null
+      let results=[],result=null;
       let valid=true;
       for(let i=0; i<items.length; i++){
           let temp = items[i].validateItem(myOption)
           //第一次才进行以下操作
-          if((!result)&&!temp.valid){
+          if(!temp.valid){
+            results.push(temp)
             valid = false; 
             result=temp;         
-            if (myOption.showToast){
-              wx.showToast({
-                title: result.rule.message,
-                icon:"none"
-              })
-              console.warn(`Form: <${result.rule.message}><MODEL.${result.prop}> : ${result.value}`) 
-            }
             //如果不用显示表单内提示，遇到invalid即停止验证
             // if(!this.properties.showTip){
             //   break;
             // }
           }
       }
-      if(!valid){
-        return result
+      if (myOption.showToast && result) {
+        wx.showToast({
+          title: results[0].rule.message,
+          icon: "none"
+        })
+        console.warn(`Form: <${results[0].rule.message}><MODEL.${results[0].prop}> : <${results[0].value}>`)
       }
-      return {valid};
+      return {valid,results};
     },
 
     //重置表单验证的状态

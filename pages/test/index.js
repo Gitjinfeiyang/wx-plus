@@ -143,7 +143,7 @@ Page({
     // })
 
     const form=this.selectComponent("#form")
-    form.validate()
+    console.log(form.validate())
   },
 
   onDelete(e){

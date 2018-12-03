@@ -75,6 +75,9 @@ Component({
       let val=this.getParentValue()
       if(isEqual(val,this.data.value) || val == undefined) return;
       //刷新验证
+      this.setData({
+        value: val
+      })
       this.setChildValue(val)
       if(!this.data.firstTime){
         if(!this.data.showTip) return; //如果不显示提示则无需自动验证
@@ -98,10 +101,7 @@ Component({
     setChildValue(value){   
       if(!this.data.child) return;
       if ((!this.properties.prop) || this.properties.prop === '') return;
-      //如果child不存在，formitem的值不初始化
-      this.setData({
-        value: value
-      })
+      
       let dirtyVal = this.properties.input(value, this.properties.prop) 
       this.data.child.setValue(dirtyVal)
     },
@@ -119,6 +119,9 @@ Component({
     },
 
     validateItem({mode}){
+      if (this.data.firstTime){
+        this.data.firstTime = false;
+      }
       let valid=true;
       const rules=this.data.rule;
       let invalidRule=null;
