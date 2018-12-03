@@ -7,6 +7,7 @@
     "m-picker-item": "../../components/Form/Picker/PickerItem/index",
     "address-select": "../../components/AddressSelect/index",
     "swipe-list-item": "../../components/SwipeListItem/index",
-    "swipe-tab": "../../components/SwipeTab/index"
+    "swipe-tab": "../../components/SwipeTab/index",
+    "dialog": "../../components/Dialog/index"
   }
 }

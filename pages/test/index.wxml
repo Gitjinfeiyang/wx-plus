@@ -1,6 +1,6 @@
 
 <view style="height:100vh;">
-  <swipe-tab tabbar="{{['表单','滑动删除']}}" flex="{{false}}">
+  <swipe-tab tabbar="{{['表单','滑动删除','对话框']}}" flex="{{false}}">
 
 
     <scroll-view scroll-y class="form-example" slot="表单">
@@ -91,6 +91,12 @@
       </scroll-view>
     </view>
 
+    <view slot="对话框">
+      <button bindtap="openDialog">打开对话框</button>
+      <dialog bindcancel="onCancel" show="{{dialogOpen}}">
+        <input placeholder='不超过20个字符' />
+      </dialog>
+    </view>
 
   </swipe-tab>
 </view>

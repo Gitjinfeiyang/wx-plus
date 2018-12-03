@@ -67,6 +67,7 @@ Component({
       //formitem只接受从model来的数据
       // this.setData({ event,value:options.value })
       if(!this.data.parent) return;
+      //即时校验
       this.data.parent.onChange(dirtyVal,this.properties.prop)
     },
     //using for init value from model
@@ -75,6 +76,11 @@ Component({
       if(isEqual(val,this.data.value) || val == undefined) return;
       //刷新验证
       this.setChildValue(val)
+      if(!this.data.firstTime){
+        this.validateItem({ mode: 'all' })
+      }else{
+        this.data.firstTime=false;      
+      }
     },    
     getParentValue(){
       if(!this.data.parent) return;
@@ -199,7 +205,7 @@ Component({
           parent: target,
           labelWidth:target.data.labelWidth
         })
-        this.refreshValue()
+        // this.refreshValue()
       },
       linkChanged(target) {
         // this.setData({

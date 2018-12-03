@@ -93,6 +93,8 @@ Page({
 
 
     valid:true,
+
+    dialogOpen:false,
   },
 
   /**
@@ -128,7 +130,7 @@ Page({
     })
     const form = this.selectComponent("#form")
     // this.setData({
-      form.validate({ showToast: false, mode: 'all' })
+      // form.validate({ showToast: false, mode: 'all' })
     // })
     
   },
@@ -147,6 +149,18 @@ Page({
   onDelete(e){
     wx.showToast({
       title:'删除'+this.data.sexList[e.currentTarget.dataset.index].label
+    })
+  },
+
+
+  openDialog(){
+    this.setData({
+      dialogOpen:true
+    })
+  },
+  onCancel(){
+    this.setData({
+      dialogOpen:false
     })
   }
 })
