@@ -61,7 +61,8 @@ Component({
     },
 
     popHeight: { // mode 为 custom时 ,无height则为全屏
-      type:String
+      type:String,
+      value:'60%'
     },
 
     childrenKey:{

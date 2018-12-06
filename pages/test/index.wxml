@@ -93,12 +93,13 @@
 
     <view slot="对话框">
       <button bindtap="openDialog">打开对话框</button>
-      <dialog bindcancel="onCancel" show="{{dialogOpen}}">
-        <input placeholder='不超过20个字符' />
-      </dialog>
     </view>
 
   </swipe-tab>
+
+  <dialog bindcancel="onCancel" show="{{dialogOpen}}" confirmButton="{{confirmButton}}">
+        <input placeholder='不超过20个字符' />
+      </dialog>
 </view>
 
 

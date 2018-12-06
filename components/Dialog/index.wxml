@@ -3,9 +3,9 @@
     <view class="title">{{title}}</view>
     <view class="content"><slot></slot></view>
     <view class="button-area">
-      <button class="cancel-button" bindtap="onCancel">取消</button>
-      <button class="confirm-button" bindtap='onConfirm'>确定</button>
+      <button class="cancel-button" bindtap="onCancel" wx:if="{{cancelButton.show}}">{{cancelButton.text}}</button>
+      <button class="confirm-button" bindtap='onConfirm' wx:if="{{confirmButton.show}}">{{confirmButton.text}}</button>
     </view>
   </view>
+  <view class="mask" wx:if="{{dialogShow}}" bindtap="onClickMask"></view>
 </view>
-<view class="mask" wx:if="{{dialogShow}}" bindtap="onClickMask"></view>

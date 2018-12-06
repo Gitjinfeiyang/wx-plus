@@ -95,6 +95,9 @@ Page({
     valid:true,
 
     dialogOpen:false,
+    confirmButton:{
+      show:false
+    }
   },
 
   /**
