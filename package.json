@@ -1,0 +1,20 @@
+{
+  "name": "wx-plus-library",
+  "version": "1.0.1",
+  "description": "A components library ",
+  "main": "adapter.js",
+  "miniprogram": "dist",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gitjinfeiyang/wx-plus.git"
+  },
+  "author": "jinfy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gitjinfeiyang/wx-plus/issues"
+  },
+  "homepage": "https://github.com/Gitjinfeiyang/wx-plus#readme"
+}

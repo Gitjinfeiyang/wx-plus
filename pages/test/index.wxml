@@ -1,9 +1,9 @@
 
 <view style="height:100vh;">
-  <swipe-tab tabbar="{{['表单','滑动删除','对话框']}}" flex="{{false}}">
+  <swipe-tab tabbar="{{['表单','滑动删除','对话框']}}" flex="{{false}}" bindreachbottom="onSwipeReachBottom">
 
 
-    <scroll-view scroll-y class="form-example" slot="表单">
+    <view class="form-example" slot="表单">
         <view class="title">表单</view>
         <m-form id="form" model="{{form}}" rules="{{rules}}"   bindchange="formChange" labelWidth="180" showTip="{{true}}">
           
@@ -75,20 +75,21 @@
 
 
         <view class="tip">针对必填验证以禁用按钮需求，可在表单验证方法添加参数[mode="required"]即可只验证必填</view>
-        <button bindtap="autoInput" disabled='{{!valid}}'>提交</button>
+        reachBottom次数:{{reachBottomCount}}
+        <button bindtap="autoInput" disabled='{{!valid}}' wx:for="{{reachBottomCount}}">提交</button>
         </m-form>
 
-    </scroll-view>
+    </view>
 
 
     <view slot="滑动删除">
-      <scroll-view>
+      <view>
         <view class="title">滑动删除</view>
         <swipe-list-item wx:for="{{sexList}}" data-index="{{index}}" bindconfirm="onDelete">
           {{item.label}}
           <view class="tip">测试滑动删除功能</view>
         </swipe-list-item>
-      </scroll-view>
+      </view>
     </view>
 
     <view slot="对话框">

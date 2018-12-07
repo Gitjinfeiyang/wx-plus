@@ -97,7 +97,9 @@ Page({
     dialogOpen:false,
     confirmButton:{
       show:false
-    }
+    },
+
+    reachBottomCount:[],
   },
 
   /**
@@ -165,6 +167,22 @@ Page({
     this.setData({
       dialogOpen:false
     })
+  },
+
+  onSwipeReachBottom(e){
+    switch(e.detail.index){
+      case 0:
+        this.data.reachBottomCount.push(0)
+        this.data.reachBottomCount.push(0)
+        this.data.reachBottomCount.push(0)
+        this.data.reachBottomCount.push(0)
+        this.data.reachBottomCount.push(0)
+        this.setData({
+          reachBottomCount: this.data.reachBottomCount
+        })
+        break;
+
+    }
   }
 })
 
